@@ -34,7 +34,6 @@ public class Solution {
         String longest = "";
         for (int i = 0; i < s.length() - 1; i++) {
             String local = longestPalindrome(s, i);
-            System.out.println(i + local);
             if (local.length() > longest.length()) {
                 longest = local;
             }
