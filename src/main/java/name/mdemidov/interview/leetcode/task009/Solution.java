@@ -12,8 +12,8 @@ public class Solution {
         }
         int reverse = 0;
         int tmp = x;
-        for (; tmp > 0; tmp/=10) {
-            reverse = reverse * 10 + tmp%10;
+        for (; tmp > 0; tmp /= 10) {
+            reverse = reverse * 10 + tmp % 10;
         }
         return (x == reverse);
     }

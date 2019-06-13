@@ -9,6 +9,7 @@ import name.mdemidov.interview.leetcode.object.ListNode;
  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  */
 public class Solution {
+
     public static void main(String[] args) {
         ListNode input1 = new ListNode(5);
 //        input1.next = new ListNode(4);

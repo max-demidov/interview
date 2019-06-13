@@ -11,7 +11,7 @@ public class Solution {
         input.left.right = new TreeNode(3);
         input.right = new TreeNode(7);
         input.right.left = new TreeNode(6);
-        input.right.right= new TreeNode(9);
+        input.right.right = new TreeNode(9);
 
         TreeNode output = new Solution().invertTree(input);
         System.out.println(output);

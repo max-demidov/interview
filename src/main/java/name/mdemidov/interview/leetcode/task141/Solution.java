@@ -3,6 +3,7 @@ package name.mdemidov.interview.leetcode.task141;
 import name.mdemidov.interview.leetcode.object.ListNode;
 
 public class Solution {
+
     public static void main(String[] args) {
         ListNode input1 = new ListNode(3);
         input1.next = new ListNode(2);

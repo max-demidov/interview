@@ -31,7 +31,7 @@ public class Solution {
             }
             add = sum > 1;
         }
-        return add ? "1" + res: res;
+        return add ? "1" + res : res;
     }
 
 }

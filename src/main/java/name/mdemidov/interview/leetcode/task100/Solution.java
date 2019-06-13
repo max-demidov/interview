@@ -8,6 +8,7 @@ import name.mdemidov.interview.leetcode.object.TreeNode;
  * Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
  */
 public class Solution {
+
     public static void main(String[] args) {
         TreeNode input1 = new TreeNode(1);
         input1.left = new TreeNode(2);

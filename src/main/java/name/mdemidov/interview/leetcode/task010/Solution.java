@@ -15,8 +15,15 @@ public class Solution {
         System.out.println("Expected  true, actual " + new Solution().isMatch("a", "ab*"));
         System.out.println("Expected  true, actual " + new Solution().isMatch("abbbcd", "ab*bbbcd"));
         System.out.println("Expected  true, actual " + new Solution().isMatch("", "c*c*"));
-        System.out.println("Expected  true, actual " + new Solution().isMatch("aaa", "aaaa"));
-        System.out.println("Expected false, actual " + new Solution().isMatch("acaabbaccbbacaabbbb", "a*.*b*.*a*aa*a*"));
+        System.out.println("Expected false, actual " + new Solution().isMatch("aaa", "aaaa"));
+        System.out.println("Expected false, actual " + new Solution().isMatch("acaabbaccbbacaabbb", "a*.*b*.*a*aa*a*"));
+        System.out.println("Expected false, actual " + new Solution().isMatch("b", "b*aa*"));
+        System.out.println("Expected  true, actual " + new Solution().isMatch("abbabaaaaaaacaa", "a*.*b.a.*c*b*a*c*"));
+        System.out.println("Expected  true, actual " + new Solution().isMatch("ca", ".*c*"));
+        System.out.println("Expected  true, actual " + new Solution().isMatch("ab", ".*.."));
+        System.out
+            .println("Expected  true, actual " + new Solution().isMatch("bcbabcaacacbcabac", "a*c*a*b*.*aa*c*a*a*"));
+        System.out.println("Expected  true, actual " + new Solution().isMatch("c", "c*a*"));
     }
 
     /**
@@ -30,7 +37,7 @@ public class Solution {
      * @return result
      */
     public boolean isMatch(String s, String p) {
-        //System.out.println("s=" + s + " p=" + p);
+//        System.out.println("s=" + s + " p=" + p);
         if (s.equals(p)) {
             return true;
         }
@@ -53,10 +60,14 @@ public class Solution {
                 if (p.length() == 2) {
                     return true;
                 }
-                for (int j = 0; j < s.length(); j++) {
-                    if (isMatch(s.substring(j), p.substring(2))) {
-                        return true;
-                    }
+                if (s.length() == 1 && isMatch("", p.substring(2))) {
+                    return true;
+                }
+                if (isMatch(s, p.substring(2))) {
+                    return true;
+                }
+                if (isMatch(s.substring(1), p) || isMatch(s.substring(1), p.substring(2))) {
+                    return true;
                 }
                 return false;
             }
@@ -67,7 +78,10 @@ public class Solution {
                 if (s.length() > 1) {
                     return isMatch(s.substring(1), p);
                 } else {
-                    return true;
+                    if (p.length() == 2) {
+                        return true;
+                    }
+                    return isMatch("", p.substring(2));
                 }
             } else {
                 return isMatch(s, p.substring(2));
