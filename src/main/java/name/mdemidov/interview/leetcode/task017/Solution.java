@@ -38,8 +38,7 @@ public class Solution {
     };
 
     public static void main(String[] args) {
-        System.out.println(
-            new name.mdemidov.interview.leetcode.task017.Solution().letterCombinations("579"));
+        System.out.println(new Solution().letterCombinations("579"));
     }
 
     public List<String> letterCombinations(String digits) {

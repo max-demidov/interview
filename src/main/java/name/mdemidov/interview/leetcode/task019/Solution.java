@@ -29,9 +29,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(
-            new name.mdemidov.interview.leetcode.task019.Solution().removeNthFromEnd(NODE1, 5)
-        );
+        System.out.println(new Solution().removeNthFromEnd(NODE1, 5));
     }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {

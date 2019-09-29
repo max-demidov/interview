@@ -33,9 +33,8 @@ public class Solution {
 
         ListNode c = new ListNode(2);
         c.next = new ListNode(6);
-        System.out.println(
-            new name.mdemidov.interview.leetcode.task023.Solution()
-                .mergeKLists(new ListNode[]{a, b, c}));
+
+        System.out.println(new Solution().mergeKLists(new ListNode[]{a, b, c}));
     }
 
     public ListNode mergeKLists(ListNode[] lists) {

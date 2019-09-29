@@ -22,8 +22,7 @@ import java.util.List;
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(
-            new name.mdemidov.interview.leetcode.task022.Solution().generateParenthesis(8));
+        System.out.println(new Solution().generateParenthesis(8));
     }
 
     private static String getCombination(int number, int length) {
