@@ -15,10 +15,7 @@ public class ListNode {
 
     @Override
     public String toString() {
-        return "ListNode{" +
-               "val=" + val +
-               (next == null ? "" : ", next=" + next) +
-               '}';
+        return val + (next == null ? "" : "->" + next);
     }
 
     private ListNode append(int[] values, int startIndex) {

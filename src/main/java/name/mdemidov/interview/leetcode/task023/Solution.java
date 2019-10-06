@@ -23,16 +23,9 @@ import java.util.TreeMap;
 public class Solution {
 
     public static void main(String[] args) {
-        ListNode a = new ListNode(1);
-        a.next = new ListNode(4);
-        a.next.next = new ListNode(5);
-
-        ListNode b = new ListNode(1);
-        b.next = new ListNode(3);
-        b.next.next = new ListNode(4);
-
-        ListNode c = new ListNode(2);
-        c.next = new ListNode(6);
+        ListNode a = new ListNode(1, 4, 5);
+        ListNode b = new ListNode(1, 3, 4);
+        ListNode c = new ListNode(2, 6);
 
         System.out.println(new Solution().mergeKLists(new ListNode[]{a, b, c}));
     }

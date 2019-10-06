@@ -5,16 +5,9 @@ import name.mdemidov.interview.leetcode.object.ListNode;
 public class Solution {
 
     public static void main(String[] args) {
-        ListNode input1 = new ListNode(3);
-        input1.next = new ListNode(2);
-        input1.next.next = new ListNode(0);
-        input1.next.next.next = new ListNode(-4);
+        ListNode input1 = new ListNode(3, 2, 0, -4);
         input1.next.next.next.next = input1.next;
-
-        ListNode input2 = new ListNode(1);
-        input2.next = new ListNode(3);
-        input2.next.next = new ListNode(1);
-
+        ListNode input2 = new ListNode(1, 3, 1);
         System.out.println(new Solution().hasCycle(input1));
         System.out.println(new Solution().hasCycle(input2));
     }

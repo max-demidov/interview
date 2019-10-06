@@ -6,16 +6,8 @@ import name.mdemidov.interview.leetcode.object.ListNode;
 public class Solution {
 
     public static void main(String[] args) {
-        ListNode input = new ListNode(1);
-        input.next = new ListNode(2);
-        input.next.next = new ListNode(2);
-        input.next.next.next = new ListNode(2);
-        input.next.next.next.next = new ListNode(3);
-        input.next.next.next.next.next = new ListNode(3);
-        input.next.next.next.next.next.next = new ListNode(4);
 
-        ListNode output = new Solution().deleteDuplicates(input);
-        System.out.println(output);
+        System.out.println(new Solution().deleteDuplicates(new ListNode(1, 2, 2, 2, 3, 3, 4)));
     }
 
     public ListNode deleteDuplicates(ListNode head) {

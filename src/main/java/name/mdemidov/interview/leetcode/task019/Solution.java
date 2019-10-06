@@ -15,21 +15,8 @@ import java.util.List;
  */
 public class Solution {
 
-    private static final ListNode NODE1 = new ListNode(1);
-    private static final ListNode NODE2 = new ListNode(2);
-    private static final ListNode NODE3 = new ListNode(3);
-    private static final ListNode NODE4 = new ListNode(4);
-    private static final ListNode NODE5 = new ListNode(5);
-
-    static {
-        NODE1.next = NODE2;
-        NODE2.next = NODE3;
-        NODE3.next = NODE4;
-        NODE4.next = NODE5;
-    }
-
     public static void main(String[] args) {
-        System.out.println(new Solution().removeNthFromEnd(NODE1, 5));
+        System.out.println(new Solution().removeNthFromEnd(new ListNode(1, 2, 3, 4, 5), 5));
     }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {

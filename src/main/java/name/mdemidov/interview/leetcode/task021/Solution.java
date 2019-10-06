@@ -5,16 +5,9 @@ import name.mdemidov.interview.leetcode.object.ListNode;
 public class Solution {
 
     public static void main(String[] args) {
-        ListNode input1 = new ListNode(1);
-        input1.next = new ListNode(2);
-        input1.next.next = new ListNode(4);
 
-        ListNode input2 = new ListNode(1);
-        input2.next = new ListNode(3);
-        input2.next.next = new ListNode(4);
-
-        ListNode output = new Solution().mergeTwoLists(input1, input2);
-        System.out.println(output);
+        System.out.println(
+            new Solution().mergeTwoLists(new ListNode(1, 2, 4), new ListNode(1, 3, 4)));
     }
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
