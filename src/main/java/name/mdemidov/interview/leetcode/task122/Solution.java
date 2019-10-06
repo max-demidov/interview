@@ -31,7 +31,7 @@ package name.mdemidov.interview.leetcode.task122;
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(new Solution().maxProfit(new int[]{7,6,4,3,1}));
+        System.out.println(new Solution().maxProfit(new int[]{7, 6, 4, 3, 1}));
     }
 
     public int maxProfit(int[] prices) {
