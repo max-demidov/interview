@@ -10,7 +10,16 @@ public class ListNode {
             throw new IllegalArgumentException("Empty list of values");
         }
         val = values[0];
-        next = append(values, 1);
+        next = add(values, 1);
+    }
+
+    public ListNode append(ListNode node) {
+        ListNode last = this;
+        while (last.next != null) {
+            last = last.next;
+        }
+        last.next = node;
+        return this;
     }
 
     @Override
@@ -18,13 +27,13 @@ public class ListNode {
         return val + (next == null ? "" : "->" + next);
     }
 
-    private ListNode append(int[] values, int startIndex) {
+    private ListNode add(int[] values, int startIndex) {
         if (startIndex >= values.length) {
             return null;
         }
         ListNode node = new ListNode(values[startIndex]);
         if (startIndex < values.length - 1) {
-            node.next = append(values, startIndex + 1);
+            node.next = add(values, startIndex + 1);
         }
         return node;
     }
