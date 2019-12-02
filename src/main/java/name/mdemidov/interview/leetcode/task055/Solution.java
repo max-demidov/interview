@@ -46,5 +46,5 @@ public class Solution {
         }
         return nums[0] > n;
     }
-    
+
 }
