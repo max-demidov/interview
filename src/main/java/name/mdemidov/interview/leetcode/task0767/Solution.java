@@ -1,11 +1,5 @@
 package name.mdemidov.interview.leetcode.task0767;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * https://leetcode.com/problems/reorganize-string/
  *
@@ -34,56 +28,46 @@ public class Solution {
     private static final Solution S = new Solution();
 
     public String reorganizeString(String S) {
-        Map<Character, Integer> frequency = new HashMap<>();
+        int count[] = new int[26];
         for (int i = 0; i < S.length(); i++) {
-            char c = S.charAt(i);
-            frequency.put(c, frequency.getOrDefault(c, 0) + 1);
+            count[S.charAt(i) - 'a']++;
         }
-        frequency = reverseSortByValue(frequency);
-        //System.out.println(frequency);
 
-        StringBuilder sb = new StringBuilder();
-        char last = 0;
-        while (!frequency.isEmpty()) {
-            for (char c : frequency.keySet()) {
-                if (last == c) {
-                    if (frequency.size() == 1) {
-                        return "";
-                    }
-                    continue;
-                }
-                sb.append(c);
-                frequency.put(c, frequency.get(c) - 1);
-                if (last > 0 && frequency.getOrDefault(last, 0) > 0) {
-                    last = c;
-                    break;
-                }
-                last = c;
+        int max = 0;
+        int maxIndex = 0;
+        for (int i = 0; i < count.length; i++) {
+            if (count[i] > max) {
+                max = count[i];
+                maxIndex = i;
             }
-            frequency.entrySet().removeIf(e -> e.getValue() < 1);
-            frequency = reverseSortByValue(frequency);
-            //System.out.println(frequency);
         }
-        return sb.toString();
-    }
 
-    private static Map<Character, Integer> reverseSortByValue(Map<Character, Integer> input) {
-        List<Map.Entry<Character, Integer>> list = new LinkedList<>(input.entrySet());
-        list.sort((o1, o2) -> (o2.getValue()).compareTo(o1.getValue()));
-
-        Map<Character, Integer> output = new LinkedHashMap<>();
-        for (Map.Entry<Character, Integer> entry : list) {
-            output.put(entry.getKey(), entry.getValue());
+        if (max > (S.length() + 1) / 2) {
+            return "";
         }
-        return output;
+
+        char[] seq = new char[S.length()];
+        int i = 0;
+        for (int j = 0; j < count.length; j++) {
+            int k = (maxIndex + j) % count.length;
+            while (count[k] > 0) {
+                if (i >= seq.length) {
+                    i = 1;
+                }
+                seq[i] = (char) ('a' + k);
+                i += 2;
+                count[k]--;
+            }
+        }
+        return String.valueOf(seq);
     }
 
     public static void main(String[] args) {
-//        System.out.println(S.reorganizeString("aabcddd"));
-//        System.out.println(S.reorganizeString("ccaaaab"));
-//        System.out.println(S.reorganizeString("vvvlo"));
-//        System.out.println(S.reorganizeString("abbabba"));
-//        System.out.println(S.reorganizeString("aaba"));
+        System.out.println(S.reorganizeString("aabcddd"));
+        System.out.println(S.reorganizeString("ccaaaab"));
+        System.out.println(S.reorganizeString("vvvlo"));
+        System.out.println(S.reorganizeString("abbabba"));
+        System.out.println(S.reorganizeString("aaba"));
         String s = "tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqke"
                    + "mtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonn"
                    + "szmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobm"
