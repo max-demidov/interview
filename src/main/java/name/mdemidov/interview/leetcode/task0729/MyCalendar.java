@@ -1,7 +1,6 @@
 package name.mdemidov.interview.leetcode.task0729;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * https://leetcode.com/problems/my-calendar-i/
@@ -45,36 +44,56 @@ import java.util.Set;
  */
 public class MyCalendar {
 
-    private Set<Interval> occupied;
+//    Solution with Runtime: 183 ms, faster than 6.85%
+//
+//    private Set<Interval> occupied;
+//
+//    public MyCalendar() {
+//        occupied = new HashSet<>();
+//    }
+//
+//    public boolean book(int start, int end) {
+//        Interval interval = new Interval(start, end);
+//        for (Interval i : occupied) {
+//            if (interval.overlaps(i)) {
+//                return false;
+//            }
+//        }
+//        occupied.add(interval);
+//        return true;
+//    }
+//
+//    private class Interval {
+//
+//        int start;
+//        int end;
+//
+//        private Interval(int start, int end) {
+//            this.start = start;
+//            this.end = end;
+//        }
+//
+//        private boolean overlaps(Interval another) {
+//            return another.end > this.start && another.start < this.end;
+//        }
+//    }
+
+//    Solution with Runtime: 23 ms
+    private TreeMap<Integer, Integer> occupied; // <start, end>
 
     public MyCalendar() {
-        occupied = new HashSet<>();
+        occupied = new TreeMap<>();
     }
 
     public boolean book(int start, int end) {
-        Interval interval = new Interval(start, end);
-        for (Interval i : occupied) {
-            if (interval.overlaps(i)) {
-                return false;
-            }
+        Integer closestStart = occupied.floorKey(start);
+        Integer closestEnd = occupied.ceilingKey(start);
+        if (closestStart != null && occupied.get(closestStart) > start
+            || closestEnd != null && closestEnd < end) {
+            return false;
         }
-        occupied.add(interval);
+        occupied.put(start, end);
         return true;
-    }
-
-    private class Interval {
-
-        int start;
-        int end;
-
-        private Interval(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-
-        private boolean overlaps(Interval another) {
-            return another.end > this.start && another.start < this.end;
-        }
     }
 
     public static void main(String[] args) {
