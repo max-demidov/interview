@@ -55,7 +55,7 @@ public class Solution {
         return deque.pollFirst();
     }
 
-    public void parse(TreeNode root, Deque<Integer> deque) {
+    private static void parse(TreeNode root, Deque<Integer> deque) {
         if (root == null) {
             return;
         }
