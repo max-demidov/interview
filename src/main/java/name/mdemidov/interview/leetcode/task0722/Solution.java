@@ -1,8 +1,7 @@
 package name.mdemidov.interview.leetcode.task0722;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * https://leetcode.com/problems/remove-comments/
@@ -30,16 +29,33 @@ public class Solution {
   private static final Solution S = new Solution();
 
   public List<String> removeComments(String[] source) {
+    List<String> res = new ArrayList<>();
     StringBuilder sb = new StringBuilder();
+    boolean isOpen = false;
     for (String line : source) {
-      sb.append(line).append('\n');
+      for (int i = 0; i < line.length(); i++) {
+        if (isOpen) {
+          if (i < line.length() - 1 && line.charAt(i) == '*' && line.charAt(i + 1) == '/') {
+            i++;
+            isOpen = false;
+          }
+        } else {
+          if (i < line.length() - 1 && line.charAt(i) == '/' && line.charAt(i + 1) == '*') {
+            i++;
+            isOpen = true;
+          } else if (i < line.length() - 1 && line.charAt(i) == '/' && line.charAt(i + 1) == '/') {
+            break;
+          } else {
+            sb.append(line.charAt(i));
+          }
+        }
+      }
+      if (!isOpen && sb.length() > 0) {
+        res.add(sb.toString());
+        sb = new StringBuilder();
+      }
     }
-    String code = sb.toString()
-        .replaceAll("//.*(\\*/)", "*/")
-        .replaceAll("//.*\\n", "\n")
-        .replaceAll("(/\\*((?!\\*/)(.|\\n))*\\*/)", "");
-
-    return Stream.of(code.split("\n")).filter(l -> !l.isEmpty()).collect(Collectors.toList());
+    return res;
   }
 
   public static void main(String[] args) {
