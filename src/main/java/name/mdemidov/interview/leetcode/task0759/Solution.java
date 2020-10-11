@@ -2,7 +2,6 @@ package name.mdemidov.interview.leetcode.task0759;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -53,51 +52,36 @@ public class Solution {
   private static final Solution S = new Solution();
 
   public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
-    List<Interval> intervals = new ArrayList<>();
-    for (List<Interval> list : schedule) {
-      intervals.addAll(list);
-    }
-    intervals.sort(Comparator.comparingInt(i -> i.start));
-
-    int maxEnd = Integer.MIN_VALUE;
-    for (Interval i : intervals) {
-      maxEnd = Math.max(maxEnd, i.end);
-    }
-
+    Set<Integer> starts = new TreeSet<>();
     Set<Integer> ends = new TreeSet<>();
-    for (Interval i : intervals) {
-      if (i.end < maxEnd) {
+    int maxEnd = Integer.MIN_VALUE;
+    for (List<Interval> list : schedule) {
+      for (Interval i : list) {
+        starts.add(i.start);
         ends.add(i.end);
+        maxEnd = Math.max(maxEnd, i.end);
       }
     }
+    ends.remove(maxEnd);
 
     List<Interval> res = new ArrayList<>();
     for (int end : ends) {
-      if (isBusy(end, intervals)) {
-        continue;
+      if (!isBusy(end, schedule)) {
+        res.add(new Interval(end, starts.stream().filter(s -> s > end).findFirst().get()));
       }
-      res.add(new Interval(end, nextStart(end, intervals)));
     }
-
     return res;
   }
 
-  private static boolean isBusy(int end, List<Interval> intervals) {
-    for (Interval i : intervals) {
-      if (i.start <= end && end < i.end) {
-        return true;
+  private static boolean isBusy(int end, List<List<Interval>> schedule) {
+    for (List<Interval> list : schedule) {
+      for (Interval i : list) {
+        if (i.start <= end && end < i.end) {
+          return true;
+        }
       }
     }
     return false;
-  }
-
-  private static int nextStart(int end, List<Interval> intervals) {
-    for (Interval i : intervals) {
-      if (i.start > end) {
-        return i.start;
-      }
-    }
-    return -1;
   }
 
   private static final class Interval {
