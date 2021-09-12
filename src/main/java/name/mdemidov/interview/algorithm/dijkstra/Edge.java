@@ -2,11 +2,11 @@ package name.mdemidov.interview.algorithm.dijkstra;
 
 public class Edge {
 
-  Node to;
   int dist;
+  Vertex to;
 
-  public Edge(Node to, int dist) {
-    this.to = to;
+  public Edge(int dist, Vertex to) {
     this.dist = dist;
+    this.to = to;
   }
 }
