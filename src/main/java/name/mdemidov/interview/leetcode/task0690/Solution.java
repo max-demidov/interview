@@ -1,4 +1,4 @@
-package name.mdemidov.interview.leetcode.task690;
+package name.mdemidov.interview.leetcode.task0690;
 
 import java.util.ArrayList;
 import java.util.HashMap;
